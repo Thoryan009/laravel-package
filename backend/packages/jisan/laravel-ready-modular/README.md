@@ -67,25 +67,11 @@ app/
          │   └── ProductSeeder.php
          └── Services/
              └── ProductService.php
+         └── ModuleServiceProvider.php
+             
+        
 ```
 
----
-
-<!-- ## ⚙️ Installation
-
-### 1️⃣ Install via Composer
-
-```bash
-composer require jisan/laravel-ready-modular
-```
-
-### 2️⃣ Publish Vendor (if needed)
-
-```bash
-php artisan vendor:publish
-``` -->
-
----
 
 ## 🚀 Usage
 
@@ -135,13 +121,13 @@ php artisan make:sub-entity Product ProductDetail
 
 | Option | Description |
 |--------|------------|
-| `--service=plain` | Service type (`plain`, `cache`) |
+| `--service=plain ` | Service type `plain`, `cache` (Default) |
 | `--short` | Exclude Model, Migration, Seeder files |
 
 ### Example
 
 ```bash
-php artisan make:sub-entity Product ProductDetail --service=cache
+php artisan make:sub-entity Product ProductDetail 
 ```
 
  Generated inside:
