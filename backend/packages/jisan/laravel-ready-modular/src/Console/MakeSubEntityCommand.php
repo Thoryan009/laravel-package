@@ -33,7 +33,7 @@ class MakeSubEntityCommand extends Command
         $isShort = $this->option('short') ?? false;
 
         $context = new ModuleContext($entity, 'crud', $service, $module);
-        $context->path = base_path("app/Modules/{$module}"); // keep inside parent module
+        $context->path = base_path("app/Modules/{$module}"); //  keep inside parent module
 
         $context->markAsSubEntity();
         if ($isShort) {
@@ -56,3 +56,4 @@ class MakeSubEntityCommand extends Command
 
 
 }
+

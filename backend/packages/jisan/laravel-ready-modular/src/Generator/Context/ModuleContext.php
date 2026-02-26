@@ -46,6 +46,10 @@ final class ModuleContext
         $this->isSubEntity = true;
         return $this;
     }
+       public function isSubEntity(): bool
+    {
+        return $this->isSubEntity;
+    }
 
     public function markAsShortEntity(): self
     {

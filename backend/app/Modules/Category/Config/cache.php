@@ -7,7 +7,7 @@ return [
     | Cache TTL (seconds)
     |--------------------------------------------------------------------------
     |
-    | How long the SubCategory module cache should live.
+    | How long the Category module cache should live.
     |
     */
 
