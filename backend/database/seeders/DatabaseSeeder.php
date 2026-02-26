@@ -7,6 +7,8 @@ use App\Modules\Application\Seeders\ApplicationSeeder;
 use App\Modules\Application\Seeders\ProcessSeeder;
 use App\Modules\Application\Seeders\TransactionSeeder;
 use App\Modules\Auth\Seeders\AuthSeeder;
+use App\Modules\Category\Seeders\CategorySeeder;
+use App\Modules\Category\Seeders\SubCategorySeeder;
 use App\Modules\Client\Seeders\ClientSeeder;
 use App\Modules\Country\Seeders\CountrySeeder;
 use App\Modules\Employee\Seeders\DesignationSeeder;
@@ -30,19 +32,21 @@ class DatabaseSeeder extends Seeder
         $this->call([
 
             AuthSeeder::class,
-            DesignationSeeder::class,
-            EmployeeSeeder::class,
+            // DesignationSeeder::class,
+            // EmployeeSeeder::class,
             CountrySeeder::class,
             ClientSeeder::class,
-            WorkOrderSeeder::class,
-            OrderDetailsCategorySeeder::class,
-            OrderDetailsHeadSeeder::class,
-            WorkOrderDetailSeeder::class,
-            JobListSeeder::class,
-            ApplicationSeeder::class,
-            ProcessSeeder::class,
-            ApplicationProcessSeeder::class,
-            TransactionSeeder::class,
+            CategorySeeder::class,
+            SubCategorySeeder::class,
+            // WorkOrderSeeder::class,
+            // OrderDetailsCategorySeeder::class,
+            // OrderDetailsHeadSeeder::class,
+            // WorkOrderDetailSeeder::class,
+            // JobListSeeder::class,
+            // ApplicationSeeder::class,
+            // ProcessSeeder::class,
+            // ApplicationProcessSeeder::class,
+            // TransactionSeeder::class,
             SettingSeeder::class,
 
         ]);
