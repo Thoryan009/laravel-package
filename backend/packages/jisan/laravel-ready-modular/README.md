@@ -6,6 +6,17 @@
 Laravel Ready Modular helps you generate fully structured modules with Controller, Service, Repository, Request, Resource, Migration, Seeder and more — following clean architecture and best practices.
 
 ---
+## How to Integrate the package
+
+Add this to `composer.json` 
+
+ ```php
+ "require": {
+        "jisan/laravel-ready-modular": "^1.0",
+    },
+```
+Then run `composer update`
+
 
 ## ✨ Features
 
@@ -19,6 +30,8 @@ Laravel Ready Modular helps you generate fully structured modules with Controlle
 - ✅ Scalable enterprise-ready structure
 
 ---
+
+
 
 ## 📂 Generated Module Structure
 
@@ -58,7 +71,7 @@ app/
 
 ---
 
-## ⚙️ Installation
+<!-- ## ⚙️ Installation
 
 ### 1️⃣ Install via Composer
 
@@ -70,7 +83,7 @@ composer require jisan/laravel-ready-modular
 
 ```bash
 php artisan vendor:publish
-```
+``` -->
 
 ---
 
@@ -131,7 +144,7 @@ php artisan make:sub-entity Product ProductDetail
 php artisan make:sub-entity Product ProductDetail --service=cache
 ```
 
-Generated inside:
+ Generated inside:
 
 ```
 app/Modules/Product/
