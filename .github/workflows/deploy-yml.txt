@@ -1,0 +1,55 @@
+name: CI/CD Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository on GitHub Actions runner
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up SSH agent with your VPS private key from secrets
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
+
+      # Step 3: Deploy to VPS
+      - name: Deploy via SSH
+        run: |
+          ssh -o StrictHostKeyChecking=no root@76.13.208.188 << 'EOF'
+            # Make sure SSH works for git
+            export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
+
+            # Navigate to project folder or clone via SSH if it doesn't exist
+            if [ ! -d "/home/norqel/sb-ats" ]; then
+              git clone -b main git@github.com:jisan25/sb-ats.git /home/norqel/sb-ats
+            fi
+
+            cd /home/norqel/sb-ats
+
+            # Pull latest code safely via SSH
+            git fetch --all
+            git reset --hard origin/main
+
+            # Stop Docker containers safely
+            docker compose down || true
+
+            # Build and start containers, remove old orphans
+            docker compose up -d --build --remove-orphans
+
+            # Run Laravel commands inside backend container
+            docker exec sb_backend php artisan migrate --force || true
+            docker exec sb_backend php artisan config:clear || true
+            docker exec sb_backend php artisan cache:clear || true
+            docker exec sb_backend php artisan route:clear || true
+
+            echo "Deployment finished successfully!"
+          EOF
