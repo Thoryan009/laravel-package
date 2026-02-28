@@ -33,25 +33,6 @@ class ModuleGenerator
         return $this->services[$type];
     }
 
-    // private function appendSubEntityRoutes(ModuleContext $context): void
-    // {
-    //     $routePath = base_path("app/Modules/{$context->parentName}/Routes/api.php");
-
-    //     if (!file_exists($routePath)) {
-    //         return;
-    //     }
-
-    //     $entity = $context->name;
-    //     $entityPlural = str()->kebab(str()->pluralStudly($entity));
-    //     $controller = "{$entity}Controller";
-
-    //     $routeContent = "\n";
-    //     $routeContent .= "Route::apiResource('{$entityPlural}', {$controller}::class);\n";
-    //     $routeContent .= "Route::post('{$entityPlural}/bulk-delete', [{$controller}::class, 'bulkDelete']);\n";
-
-    //     file_put_contents($routePath, $routeContent, FILE_APPEND);
-    // }
-
    private function appendSubEntityRoutes(ModuleContext $context): void
     {
         $routePath = base_path("app/Modules/{$context->parentName}/Routes/api.php");
@@ -65,25 +46,23 @@ class ModuleGenerator
         $controllerNamespace = "App\\Modules\\{$context->parentName}\\Controllers\\Api\\{$controller}";
 
         $content = file_get_contents($routePath);
-        /*
-        | 1️⃣ ADD USE STATEMENT (Proper Position)
-        */
+        // | 1️⃣ ADD USE STATEMENT (Proper Position)
+
         $useLine = "use {$controllerNamespace};";
         if (! str_contains($content, $useLine)) {
 
-            // Find last existing use statement
+        //     // Find last existing use statement
             preg_match_all('/^use .*;/m', $content, $matches);
             if (!empty($matches[0])) {
                 $lastUse = end($matches[0]);
                 $content = str_replace($lastUse, $lastUse . "\n" . $useLine, $content);
-            } else {
+            }
+        else {
                 // If no use statement exists, add after <?php
                 $content = preg_replace('/<\?php\s*/', "<?php\n\n{$useLine}\n\n", $content, 1);
             }
         }
-        /*
-        | 2️⃣ ADD ROUTES (Avoid Duplicate)
-        */
+        // | 2️⃣ ADD ROUTES (Avoid Duplicate)
         if (! str_contains($content, "{$controller}::class")) {
             $content .= "\nRoute::apiResource('{$entityPlural}', {$controller}::class);";
             $content .= "\nRoute::post('{$entityPlural}/bulk-delete', [{$controller}::class, 'bulkDelete']);\n";

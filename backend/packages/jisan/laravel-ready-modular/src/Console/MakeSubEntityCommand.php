@@ -45,6 +45,13 @@ class MakeSubEntityCommand extends Command
             $this->error("❌ Module {$module} does not exist.");
             return self::FAILURE;
         }
+    
+        // Prevent duplicate sub-entity for the same module
+        $modelPath = "{$context->path}/Models/{$entity}.php";
+        if ($this->fs->exists($modelPath)) {
+            $this->error("❌ Sub-entity {$entity} already exists inside module {$module}.");
+            return self::FAILURE;
+        }
 
         // Generate all files EXCEPT api.php
         $this->generator->generate($context);

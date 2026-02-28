@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\Category\Seeders;
+namespace App\Modules\Client\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Modules\Category\Models\Category;
+use App\Modules\Client\Models\SubCategory2;
 
-class CategorySeeder extends Seeder
+class SubCategory2Seeder extends Seeder
 {
     public function run(): void
     {
@@ -19,6 +19,6 @@ class CategorySeeder extends Seeder
             ['name' => 'Item 5', 'created_at' => $now, 'updated_at' => $now],
         ];
 
-        Category::insert($items);
+        SubCategory2::insert($items);
     }
 }

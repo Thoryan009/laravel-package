@@ -7,7 +7,7 @@ return [
     | Cache TTL (seconds)
     |--------------------------------------------------------------------------
     |
-    | How long the Client module cache should live.
+    | How long the SubCategory2 module cache should live.
     |
     */
 

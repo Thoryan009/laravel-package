@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Modules\Category\Services;
+namespace App\Modules\Client\Services;
 
-use App\Modules\Category\Models\Category;
+use App\Modules\Client\Models\SubCategory;
 use App\Services\BaseCachedService;
-use App\Modules\Category\Repositories\CategoryRepository;
+use App\Modules\Client\Repositories\SubCategoryRepository;
 
-class CategoryService extends BaseCachedService
+class SubCategoryService extends BaseCachedService
 {
-    public function __construct(protected CategoryRepository $repository)
+    public function __construct(protected SubCategoryRepository $repository)
     {
-        parent::__construct(new Category());
+        parent::__construct(new SubCategory());
     }
 
     /* ==========================================================
@@ -30,11 +30,11 @@ class CategoryService extends BaseCachedService
         return $this->model->all();
     }
 
-    public function getCategory(Category $category)
+    public function getSubCategory(SubCategory $subCategory)
     {
         return $this->remember(
-            $this->byIdCacheKey($category->id),
-            fn () => $category
+            $this->byIdCacheKey($subCategory->id),
+            fn () => $subCategory
         );
     }
 
@@ -42,20 +42,20 @@ class CategoryService extends BaseCachedService
      | Write Operations (Invalidate Cache)
      |========================================================== */
 
-    public function createCategory(array $data)
+    public function createSubCategory(array $data)
     {
-        $category = $this->mutate(fn() => $this->model->create($data));
-        return $category;
+        $subCategory = $this->mutate(fn() => $this->model->create($data));
+        return $subCategory;
     }
 
-    public function updateCategory(Category $category, array $data)
+    public function updateSubCategory(SubCategory $subCategory, array $data)
     {
-        return $this->mutate(fn() => tap($category)->update($data));
+        return $this->mutate(fn() => tap($subCategory)->update($data));
     }
 
-    public function deleteCategory(Category $category): bool
+    public function deleteSubCategory(SubCategory $subCategory): bool
     {
-        return $this->mutate(fn() => $category->delete());
+        return $this->mutate(fn() => $subCategory->delete());
     }
 
     public function bulkDelete(array $ids): int

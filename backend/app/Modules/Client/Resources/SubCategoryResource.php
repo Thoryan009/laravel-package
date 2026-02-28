@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\Category\Resources;
+namespace App\Modules\Client\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Modules\Shared\Helpers\DateTimeFormatter;
 
-class CategoryResource extends JsonResource
+class SubCategoryResource extends JsonResource
 {
     public function toArray($request): array
     {

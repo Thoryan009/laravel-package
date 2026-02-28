@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Modules\Category\Requests;
+namespace App\Modules\Client\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class SubCategory1Request extends FormRequest
 {
     public function authorize(): bool
     {

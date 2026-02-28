@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Modules\Category\Repositories;
+namespace App\Modules\Client\Repositories;
 
-use App\Modules\Category\Models\Category;
+use App\Modules\Client\Models\SubCategory;
 use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Builder;
 
-class CategoryRepository extends BaseRepository
+class SubCategoryRepository extends BaseRepository
 {
-    public function __construct(Category $model)
+    public function __construct(SubCategory $model)
     {
         parent::__construct($model);
     }
